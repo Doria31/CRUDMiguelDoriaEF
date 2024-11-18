@@ -1,0 +1,49 @@
+﻿@model CRUDMiguelDoriaEF.Models.LibrosAutor
+
+@{
+    ViewData["Title"] = "Libros y Autores";
+}
+
+<div  style="padding: 50px">
+    <h1 class="text-center">Editar</h1>
+    <hr />
+    <br /><br />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdLibrosAutor" />
+
+                <div class="form-group">
+                    <label asp-for="IdAutor" class="control-label" style="margin-bottom: 10px"></label>
+                    <select asp-for="IdAutor" class="form-control" asp-items="ViewBag.IdAutor"></select>
+                    <span asp-validation-for="IdAutor" class="text-danger"></span>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Isbn" class="control-label" style="margin-bottom: 10px"></label>
+                    <select asp-for="Isbn" class="form-control" asp-items="ViewBag.Isbn"></select>
+                    <span asp-validation-for="Isbn" class="text-danger"></span>
+                </div>
+
+                <br />
+
+                <div class="form-group text-center" style="margin-top: 100px; margin-left: 420px;">
+                    <a asp-action="Index" class="btn btn-secondary" id="botonesRegistro" style="margin-right: 10px">Cancelar</a>
+                    <button type="submit" onclick="alertActualizar()" class="btn btn-primary" id="botones" />Actualizar<button />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr style="margin-top: 250px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,84 @@
+﻿@model CRUDMiguelDoriaEF.Models.Libro
+
+@{
+    ViewData["Title"] = "Libros";
+}
+
+<div class="row justify-content-center" style="padding: 20px; height: 80vh; display: flex; justify-content: center; align-items: center;">
+
+
+
+        <div class="col-md-6">
+            <h1 class="text-center">Editar Libro</h1>
+            <br />
+            <hr />
+            <br /><br />
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Isbn" />
+
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label" style="margin-bottom: 10px">Título</label>
+                <input asp-for="Titulo" class="form-control" required />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label" style="margin-bottom: 10px">Descripción:</label>
+                <input asp-for="Descripcion" class="form-control" required />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NombreAutor" class="control-label" style="margin-bottom: 10px">Autor:</label>
+                <input asp-for="NombreAutor" class="form-control" required />
+                    <span asp-validation-for="NombreAutor" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Publicacion" class="control-label" style="margin-bottom: 10px">Fecha de Publicación:</label>
+                <input asp-for="Publicacion" class="form-control" required />
+                    <span asp-validation-for="Publicacion" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="FechaRegistro" class="control-label" style="margin-bottom: 10px">Fecha de Registro:</label>
+                <input asp-for="FechaRegistro" class="form-control" required />
+                    <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="CodigoCategoria" class="control-label" style="margin-bottom: 10px">Cod. Categoría</label>
+                    <select asp-for="CodigoCategoria" class="form-control" asp-items="ViewBag.CodigoCategoria"></select>
+                    <span asp-validation-for="CodigoCategoria" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="NitEditorial" class="control-label" style="margin-bottom: 10px">Nit. Editorial</label>
+                    <select asp-for="NitEditorial" class="form-control" asp-items="ViewBag.NitEditorial"></select>
+                    <span asp-validation-for="NitEditorial" class="text-danger"></span>
+                </div>
+                <br />
+                <br /> <br />
+            <div class="form-group text-center" style="margin-left: 472px; margin-top: 70px;">
+                    <a asp-action="Index" class="btn btn-danger" id="botones" style="margin-right: 10px">Cancelar</a>
+                <button type="submit" onclick="alertActualizar()" class="btn btn-primary" id="botonesRegistro" />Actualizar<button />
+                </div>
+                <br />
+            </form>
+        </div>
+</div>
+
+<hr style="margin-top: 600px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+<!-- Footer -->
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

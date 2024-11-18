@@ -1,0 +1,68 @@
+﻿@model CRUDMiguelDoriaEF.Models.Editoriale
+
+@{
+    ViewData["Title"] = "Editoriales";
+}
+
+<div class="row justify-content-center" style="padding: 20px;">
+    <div class="col-md-6">
+        <h2 class="text-center">¿Estás seguro de Eliminar el registro?</h2>
+
+        <br /><br />
+        <div>
+            <dl class="row">
+                <hr />
+                <dt class="col-sm-2">
+                    Nombre:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nombres)
+                </dd>
+                <hr />
+                <dt class="col-sm-2">
+                    Teléfono:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Telefono)
+                </dd>
+                <hr />
+                <dt class="col-sm-2">
+                    Dirección:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Direccion)
+                </dd>
+                <hr />
+                <dt class="col-sm-2">
+                    Email:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <hr />
+                <dt class="col-sm-2">
+                    Sitio Web:
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sitioweb)
+                </dd>
+                <hr />
+            </dl>
+            <br />
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Nit" />
+                <div class="text-center" style="margin-left: 500px; margin-top: 120px;">
+                    <a asp-action="Index" class="btn btn-primary" id="botones" style="margin-right: 10px;">Cancelar</a>
+                    <input type="submit" value="Eliminar" class="btn btn-danger" id="botonesRegistro" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="text-center mt-5 py-3" style="margin-right: 1200px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+

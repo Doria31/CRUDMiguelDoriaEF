@@ -1,0 +1,51 @@
+﻿@model CRUDMiguelDoriaEF.Models.Autor
+
+
+@{
+    ViewData["Title"] = "Autores";
+}
+
+<div style="padding: 20px; background-color: w">
+
+    <h2 class="text-center">Detalles del Autor</h2>
+
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <dl class="row">
+                <hr />
+                <div class="d-flex mb-3">
+                    <dt class="col-sm-3 font-weight-bold">Nombre:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+                </div>
+                <hr />
+                <div class="d-flex mb-3">
+                    <dt class="col-sm-3 font-weight-bold">Apellido:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Apellido)</dd>
+                </div>
+                <hr />
+                <div class="d-flex mb-3">
+                    <dt class="col-sm-3 font-weight-bold">Nacionalidad:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nacionalidad)</dd>
+                </div>
+                <hr />
+            </dl>
+        </div>
+    </div>
+
+    <br />
+    <!-- Botones centrados -->
+    <div class="text-center" style="margin-left: 670px; margin-top: 100px">
+        <a asp-action="Index" class="btn btn-success" id="botones" style="margin-right: 10px">Regresar</a>
+        <a asp-action="Edit" asp-route-id="@Model?.IdAutor" class="btn btn-warning" id="botonesRegistro">Actualizar</a>
+    </div>
+
+</div>
+
+
+<hr style="margin-top: 60px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>

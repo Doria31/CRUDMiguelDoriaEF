@@ -1,0 +1,80 @@
+﻿@model CRUDMiguelDoriaEF.Models.Editoriale
+
+@{
+    ViewData["Title"] = "Editoriales";
+}
+
+<div class="row" style="padding: 20px; height: 80vh; display: flex; justify-content: center; align-items: center;">
+    <div class="col-md-4">
+        <h2 class="text-center">Crear Editorial</h2>
+        <hr />
+        <br />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campo Nit -->
+            <div class="form-group">
+                <label asp-for="Nit" class="control-label" style="margin-bottom: 10px">Nit:</label>
+                <input asp-for="Nit" class="form-control" placeholder="Ingresa..." />
+                <span asp-validation-for="Nit" class="text-danger"></span>
+            </div>
+            <br />
+
+            <!-- Campo Nombres -->
+            <div class="form-group">
+                <label asp-for="Nombres" class="control-label" style="margin-bottom: 10px">Nombres:</label>
+                <input asp-for="Nombres" class="form-control" placeholder="Ingresa..." required/>
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+            <br />
+
+            <!-- Campo Teléfono -->
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label" style="margin-bottom: 10px">Teléfono:</label>
+                <input asp-for="Telefono" class="form-control" placeholder="Ingresa..." type="number" required />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <br />
+
+            <!-- Campo Dirección -->
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label" style="margin-bottom: 10px">Dirección:</label>
+                <input asp-for="Direccion" class="form-control" placeholder="Ingresa..." required />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <br />
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label asp-for="Email" class="control-label" style="margin-bottom: 10px">Email:</label>
+                <input asp-for="Email" class="form-control" placeholder="Ingresa..." type="email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <br />
+
+            <!-- Campo Sitio Web -->
+            <div class="form-group">
+                <label asp-for="Sitioweb" class="control-label" style="margin-bottom: 10px">Sitio Web:</label>
+                <input asp-for="Sitioweb" class="form-control" placeholder="Ingresa..." required />
+                <span asp-validation-for="Sitioweb" class="text-danger"></span>
+            </div>
+            <br /><br />
+
+            <!-- Botones de acción -->
+            <div class="form-group text-center" style="margin-left: 200px; margin-top: 60px; margin-bottom: 90px">
+                <a asp-action="Index" class="btn btn-success" id="botones" style="margin-right: 10px">Cancelar</a>
+                <button type="submit" onclick="alertRegistro()" class="btn btn-success" id="botonesRegistro" required />Crear Editorial<button />
+            </div>
+        </form>
+    </div>
+</div>
+<hr style="margin-top: 350px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

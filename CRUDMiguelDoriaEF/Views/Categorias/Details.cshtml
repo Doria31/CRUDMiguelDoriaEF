@@ -1,0 +1,41 @@
+﻿@model CRUDMiguelDoriaEF.Models.Categoria
+
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<div style="padding: 20px">
+
+    <h2 class="text-center">Detalle de la Categoría</h2>
+
+    <br /><br />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <dl class="row">
+                <hr />
+                <div class="d-flex mb-3">
+                    <dt class="col-sm-3 font-weight-bold">Nombre:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+                </div>
+                <hr />
+            </dl>
+        </div>
+    </div>
+
+    
+    <!-- Botones centrados -->
+    <div class="text-center" style="margin-left: 650px; margin-top: 210px">
+        <a asp-action="Index" class="btn btn-success" id="botones" style="margin-right: 10px">Regresar</a>
+        <a asp-action="Edit" asp-route-id="@Model?.CodigoCategoria" class="btn btn-success" id="botonesRegistro">Actualizar</a>
+    </div>
+
+</div>
+
+
+<hr style="margin-top: 60px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+

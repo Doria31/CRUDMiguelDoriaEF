@@ -1,0 +1,154 @@
+﻿@model IEnumerable<CRUDMiguelDoriaEF.Models.Libro>
+
+@{
+    ViewData["Title"] = "Libros";
+}
+
+
+<div style="padding: 50px">
+    <br />
+    <h2>Gestión de Libros</h2>
+    <hr />
+    <br />
+    <p>
+        <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Registrar Libro</a>
+    </p>
+    <br />
+    <table class="table" id="example">
+        <thead>
+            <tr>
+                <th>
+                    Titúlo
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Autor
+                </th>
+                <th>
+                    Publicación
+                </th>
+                <th>
+                    Fecha de Registro
+                </th>
+                <th>
+                    Cod.Categoría
+                </th>
+                <th>
+                    Nit. Editorial
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreAutor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publicacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaRegistro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoCategoriaNavigation.CodigoCategoria)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NitEditorialNavigation.Nit)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning" id="botones" asp-route-id="@item.Isbn">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+
+                        <a asp-action="Details" class="btn btn-info" id="botones" asp-route-id="@item.Isbn">
+                            <i class="fas fa-eye"></i>
+                        </a>
+
+                        <a asp-action="Delete" class="btn btn-danger" id="botones" asp-route-id="@item.Isbn">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<hr style="margin-top: 60px">
+<footer class="text-break" style="margin-left: 1110px">
+    <p>
+        ©2024 Libros Para Todos S.A - Todos los Derechos Reservados
+    </p>
+</footer>
+
+<script>
+    new DataTable('#example', {
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: '<i class="fas fa-copy"></i>',
+                        className: 'botonCopiar btn'
+                    },
+                    {
+                        extend: 'csv',
+                        text: '<i class="fas fa-file-csv"></i>',
+                        className: 'botonCsv btn'
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<i class="fas fa-file-excel"></i>',
+                        className: 'botonExcel btn'
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<i class="fas fa-file-pdf"></i>',
+                        className: 'botonPdf btn'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i>',
+                        className: 'botonPrint btn'
+                    },
+                    {
+                        extend: 'colvis',
+                        text: '<i class="fas fa-filter"></i>',
+                        className: 'botonColvis btn'
+                    }
+
+                ]
+            }
+
+        },
+        "language": {
+            "sEmptyTable": "No hay datos disponibles en la tabla",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+            "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+            "sInfoFiltered": "(filtrado de _MAX_ entradas totales)",
+            "sLengthMenu": "Mostrar _MENU_ entradas",
+            "sLoadingRecords": "Cargando...",
+            "sProcessing": "Procesando...",
+            "sSearch": "Buscar:",
+            "sZeroRecords": "No se encontraron resultados"
+        },
+        scrollX: true,
+        initComplete: function (json, settings) {
+            $(".dt-buttons").removeClass("dt-buttons");
+            //agregar clase para añadir estilos
+            $(".dt-button").addClass("botones");
+            //Elimina la clase de los estilos por defecto de tadatables
+            $(".dt-button").addClass("botones");
+        }
+    });
+</script>
