@@ -1,25 +1,22 @@
 ﻿@model IEnumerable<CRUDMiguelDoriaEF.Models.Categoria>
-
+@Html.AntiForgeryToken()
 @{
     ViewData["Title"] = "Categorías";
 }
 
 <div style="padding: 50px">
     <br />
-    <h2 >Gestión de Categorias</h2>
+    <h2>Gestión de Categorías</h2>
     <hr />
     <br />
     <p>
-        <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Crear Categoria</a>
+        <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Nueva Categoria</a>
     </p>
     <br />
-
-    <table class="table" id="example">
+    <table class="table table-striped" id="example">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
+                <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -38,8 +35,8 @@
                         <a asp-action="Details" class="btn btn-info" id="botones" asp-route-id="@item.CodigoCategoria">
                             <i class="fas fa-eye"></i>
                         </a>
-                        @Html.AntiForgeryToken()
-                        <a onclick="alertConfirmacion1(@item.CodigoCategoria)" class="btn btn-danger" id="botones">
+
+                        <a onclick="alertConfirmacion('@Url.Action("Delete", "Categorias", new { id = item.CodigoCategoria })')" class="btn btn-danger" id="botones">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
@@ -48,6 +45,28 @@
         </tbody>
     </table>
 </div>
+
+<!-- Estilos adicionales -->
+<style>
+    /* Estilo para las filas de la tabla */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Gris claro */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: white; /* Blanco */
+    }
+
+    /* Botones de acciones con un estilo consistente */
+    #botones {
+        margin-right: 5px;
+    }
+
+    #botonesRegistro {
+        margin-bottom: 10px;
+    }
+</style>
+
 <hr style="margin-top: 60px">
 <footer class="text-break" style="margin-left: 1110px">
     <p>
@@ -55,7 +74,7 @@
     </p>
 </footer>
 
- <script>
+<script>
     new DataTable('#example', {
         layout: {
             topStart: {
@@ -68,22 +87,34 @@
                     {
                         extend: 'csv',
                         text: '<i class="fas fa-file-csv"></i>',
-                        className: 'botonCsv btn'
+                        className: 'botonCsv btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'excel',
                         text: '<i class="fas fa-file-excel"></i>',
-                        className: 'botonExcel btn'
+                        className: 'botonExcel btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'pdf',
                         text: '<i class="fas fa-file-pdf"></i>',
-                        className: 'botonPdf btn'
+                        className: 'botonPdf btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i>',
-                        className: 'botonPrint btn'
+                        className: 'botonPrint btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'colvis',
@@ -116,3 +147,4 @@
         }
     });
 </script>
+

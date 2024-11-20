@@ -155,9 +155,9 @@ namespace CRUDMiguelDoriaEF.Controllers
             if (libro != null)
             {
                 _context.Libros.Remove(libro);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

@@ -1,58 +1,83 @@
 ﻿@model IEnumerable<CRUDMiguelDoriaEF.Models.LibrosAutor>
+@Html.AntiForgeryToken()
 
 @{
     ViewData["Title"] = "Libros y Autores";
 }
 <div style="padding: 50px">
     <br />
-<h2>Gestión de Libros y Autores</h2>
+    <h2>Gestión de Libros y Autores</h2>
     <hr />
     <br />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Registrar Libros y Autores</a>
-</p>
+    <p>
+        <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Registrar Libros y Autores</a>
+    </p>
     <br />
-<table class="table" id="example">
-    <thead>
-        <tr>
-            <th>
-                Id Autor
-            </th>
-            <th>
-                Isbn Libro
-            </th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped" id="example">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdAutorNavigation.IdAutor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsbnNavigation.Isbn)
-                </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-warning" id="botones" asp-route-id="@item.IdLibrosAutor">
-                        <i class="fas fa-pencil-alt"></i> 
-                    </a> 
-                    <a asp-action="Details" class="btn btn-info" id="botones" asp-route-id="@item.IdLibrosAutor">
-                        <i class="fas fa-eye"></i> 
-                    </a> 
-                    <a asp-action="Delete" class="btn btn-danger" id="botones" asp-route-id="@item.IdLibrosAutor">
-                        <i class="fas fa-trash-alt"></i> 
-                    </a>
-                </td>
+                <th>
+                    Nombre del Autor
+                </th>
+                <th>
+                    Apellidos del Autor
+                </th>
+                <th>Titulo del Libro</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
-
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAutorNavigation.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAutorNavigation.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsbnNavigation.Titulo)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-warning" id="botones" asp-route-id="@item.IdLibrosAutor">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a asp-action="Details" class="btn btn-info" id="botones" asp-route-id="@item.IdLibrosAutor">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a onclick="alertConfirmacion('@Url.Action("Delete", "LibrosAutors", new { id = item.IdLibrosAutor })')" class="btn btn-danger" id="botones">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+<!-- Estilos adicionales -->
+<style>
+    /* Estilo para las filas de la tabla */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Gris claro */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: white; /* Blanco */
+    }
+
+    /* Botones de acciones con un estilo consistente */
+    #botones {
+        margin-right: 5px;
+    }
+
+    #botonesRegistro {
+        margin-bottom: 10px;
+    }
+</style>
+
 <hr style="margin-top: 60px">
 <footer class="text-break" style="margin-left: 1110px">
     <p>
@@ -73,22 +98,34 @@
                     {
                         extend: 'csv',
                         text: '<i class="fas fa-file-csv"></i>',
-                        className: 'botonCsv btn'
+                        className: 'botonCsv btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'excel',
                         text: '<i class="fas fa-file-excel"></i>',
-                        className: 'botonExcel btn'
+                        className: 'botonExcel btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'pdf',
                         text: '<i class="fas fa-file-pdf"></i>',
-                        className: 'botonPdf btn'
+                        className: 'botonPdf btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i>',
-                        className: 'botonPrint btn'
+                        className: 'botonPrint btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'colvis',

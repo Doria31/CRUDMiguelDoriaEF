@@ -142,9 +142,9 @@ namespace CRUDMiguelDoriaEF.Controllers
             if (categoria != null)
             {
                 _context.Categorias.Remove(categoria);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

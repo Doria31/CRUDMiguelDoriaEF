@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Libros";
 }
-
+@Html.AntiForgeryToken()
 
 <div style="padding: 50px">
     <br />
@@ -14,11 +14,11 @@
         <a asp-action="Create" class="btn btn-primary" id="botonesRegistro">Registrar Libro</a>
     </p>
     <br />
-    <table class="table" id="example">
+    <table class="table table-striped" id="example">
         <thead>
             <tr>
                 <th>
-                    Titúlo
+                    Título
                 </th>
                 <th>
                     Descripción
@@ -33,10 +33,10 @@
                     Fecha de Registro
                 </th>
                 <th>
-                    Cod.Categoría
+                    Categoría
                 </th>
                 <th>
-                    Nit. Editorial
+                    Editorial
                 </th>
                 <th>Acciones</th>
             </tr>
@@ -61,10 +61,10 @@
                         @Html.DisplayFor(modelItem => item.FechaRegistro)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CodigoCategoriaNavigation.CodigoCategoria)
+                        @Html.DisplayFor(modelItem => item.CodigoCategoriaNavigation.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NitEditorialNavigation.Nit)
+                        @Html.DisplayFor(modelItem => item.NitEditorialNavigation.Nombres)
                     </td>
                     <td>
                         <a asp-action="Edit" class="btn btn-warning" id="botones" asp-route-id="@item.Isbn">
@@ -75,7 +75,7 @@
                             <i class="fas fa-eye"></i>
                         </a>
 
-                        <a asp-action="Delete" class="btn btn-danger" id="botones" asp-route-id="@item.Isbn">
+                        <a onclick="alertConfirmacion('@Url.Action("Delete", "Libroes", new { id = item.Isbn })')" class="btn btn-danger" id="botones">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
@@ -84,6 +84,28 @@
         </tbody>
     </table>
 </div>
+
+<!-- Estilos adicionales -->
+<style>
+    /* Estilo para las filas de la tabla */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Gris claro */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+        background-color: white; /* Blanco */
+    }
+
+    /* Botones de acciones con un estilo consistente */
+    #botones {
+        margin-right: 5px;
+    }
+
+    #botonesRegistro {
+        margin-bottom: 10px;
+    }
+</style>
+
 <hr style="margin-top: 60px">
 <footer class="text-break" style="margin-left: 1110px">
     <p>
@@ -104,22 +126,34 @@
                     {
                         extend: 'csv',
                         text: '<i class="fas fa-file-csv"></i>',
-                        className: 'botonCsv btn'
+                        className: 'botonCsv btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'excel',
                         text: '<i class="fas fa-file-excel"></i>',
-                        className: 'botonExcel btn'
+                        className: 'botonExcel btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'pdf',
                         text: '<i class="fas fa-file-pdf"></i>',
-                        className: 'botonPdf btn'
+                        className: 'botonPdf btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'print',
                         text: '<i class="fas fa-print"></i>',
-                        className: 'botonPrint btn'
+                        className: 'botonPrint btn',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
                     {
                         extend: 'colvis',

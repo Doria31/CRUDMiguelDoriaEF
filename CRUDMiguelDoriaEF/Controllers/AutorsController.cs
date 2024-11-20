@@ -142,12 +142,11 @@ namespace CRUDMiguelDoriaEF.Controllers
             if (autor != null)
             {
                 _context.Autors.Remove(autor);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+            
         private bool AutorExists(int id)
         {
             return _context.Autors.Any(e => e.IdAutor == id);
